@@ -3,14 +3,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import Button from "@mui/material/Button";
 import NavBar from "./components/Navbar";
+import Container from "@mui/material/Container";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
+    <>
       <NavBar></NavBar>
-      {/* <header className="App-header">
+      <Container
+        id="container"
+        maxWidth={false}
+        sx={{ backgroundColor: "#2c4147", flexGrow: 1 }}
+      >
+        {" "}
+        my Container
+      </Container>
+    </>
+    /* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
@@ -41,8 +51,7 @@ function App() {
             Vite Docs
           </a>
         </p>
-      </header> */}
-    </div>
+      </header> */
   );
 }
 
