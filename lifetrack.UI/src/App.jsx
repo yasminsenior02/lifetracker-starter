@@ -4,6 +4,7 @@ import "./App.css";
 import Button from "@mui/material/Button";
 import NavBar from "./components/Navbar";
 import Container from "@mui/material/Container";
+import Hero from "./components/Hero";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
+      <Hero></Hero>
       <Container
         id="container"
         maxWidth={false}
