@@ -16,14 +16,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <main>
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </main>
+        <NavBar />
+
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
       </BrowserRouter>
-      <NavBar></NavBar>
-      <Hero></Hero>
+
       {/* <Container
         id="container"
         maxWidth={false}

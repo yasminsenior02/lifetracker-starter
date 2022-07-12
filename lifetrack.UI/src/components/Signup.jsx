@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import MedicalResearch from "../MedicalResearch/MedicalResearch";
 import "./Signup.css";
+import NavBar from "./Navbar";
 
 export default function Signup({ setAppState }) {
   const navigate = useNavigate();
@@ -97,7 +97,9 @@ export default function Signup({ setAppState }) {
     <div className="Register">
       <div className="media">{/* <MedicalResearch width={555} /> */}</div>
       <div className="card">
-        <h2>Register </h2>
+        <div className="text">
+          <h2>Register </h2>
+        </div>
 
         {errors.form && <span className="error">{errors.form}</span>}
         <br />
@@ -105,6 +107,7 @@ export default function Signup({ setAppState }) {
         <div className="form">
           <div className="input-field">
             <label htmlFor="email">Email</label>
+            <br />
             <input
               type="email"
               name="email"
@@ -118,6 +121,7 @@ export default function Signup({ setAppState }) {
           <div className="split-inputs">
             <div className="input-field">
               <label htmlFor="username">Username</label>
+              <br />
               <input
                 type="text"
                 name="username"
@@ -133,10 +137,11 @@ export default function Signup({ setAppState }) {
             <div className="split-inputs">
               <div className="input-field">
                 <label htmlFor="name">First Name</label>
+                <br />
                 <input
                   type="text"
                   name="firstName"
-                  placeholder="Jane"
+                  placeholder="First Name"
                   value={form.firstName}
                   onChange={handleOnInputChange}
                 />
@@ -146,10 +151,11 @@ export default function Signup({ setAppState }) {
               </div>
               <div className="input-field">
                 <label htmlFor="name">Last Name</label>
+                <br />
                 <input
                   type="text"
                   name="lastName"
-                  placeholder="Doe"
+                  placeholder="Last Name"
                   value={form.lastName}
                   onChange={handleOnInputChange}
                 />
@@ -161,10 +167,11 @@ export default function Signup({ setAppState }) {
 
             <div className="input-field">
               <label htmlFor="password">Password</label>
+              <br />
               <input
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Enter a secure password"
                 value={form.password}
                 onChange={handleOnInputChange}
               />
@@ -175,10 +182,11 @@ export default function Signup({ setAppState }) {
 
             <div className="input-field">
               <label htmlFor="passwordConfirm">Confirm Password</label>
+              <br />
               <input
                 type="password"
                 name="passwordConfirm"
-                placeholder="confirm password"
+                placeholder="Confirm your password"
                 value={form.passwordConfirm}
                 onChange={handleOnInputChange}
               />

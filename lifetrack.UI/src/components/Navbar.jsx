@@ -19,13 +19,11 @@ export default function NavBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          ></IconButton>
           <nav className="navbar">
             <ul>
               <div className="logo">
-                <a href=" /">
+                <a href="/">
                   <img src="https://codepath-student-store-demo.surge.sh/assets/codepath.f1b3e41a.svg " />
                 </a>
               </div>
