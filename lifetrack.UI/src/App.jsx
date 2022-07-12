@@ -11,6 +11,9 @@ import Hero from "./components/Hero";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
+import Nutritform from "./components/Nutritform";
+import NutritionPage from "./components/NutritionPage";
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -21,8 +24,11 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/nutrition" element={<NutritionPage />} />
+          <Route path="/nutritform" element={<Nutritform />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/nutritform" element={<nutritform />} /> */}
         </Routes>
       </BrowserRouter>
 

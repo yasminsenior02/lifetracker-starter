@@ -44,13 +44,13 @@ export default function NavBar() {
                 </a>
               </li>
               <li>
-                <a href="/#about ">Exercise</a>
+                <a href="/exercise">Exercise</a>
               </li>
               <li>
-                <a href=" ">Nutrition</a>
+                <a href="\nutrition ">Nutrition</a>
               </li>
               <li>
-                <a href=" ">Sleep</a>
+                <a href="\sleep ">Sleep</a>
               </li>
               <li>
                 <a href="\login">Login</a>

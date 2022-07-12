@@ -1,44 +1,22 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "./Nutritform.css";
+import "./Signupform.css";
 import NavBar from "./Navbar";
 
-export default function Nutritform({ setAppState }) {
+export default function Signupform({ setAppState }) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
-    name: "",
-    category: "",
-    quantity: "",
-    calories: "",
-    image: "",
+    email: "",
+    username: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    passwordConfirm: "",
   });
 
-  //   const handleOnInputChange = (event) => {
-  //     if (event.target.name === "name") {
-  //       if (event.target.value.indexOf("@") === -1) {
-  //         setErrors((e) => ({ ...e, email: "Please enter a valid email." }));
-  //       } else {
-  //         setErrors((e) => ({ ...e, email: null }));
-  //       }
-  //     }
-
-  //     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
-  //   };
-
-  //   const handleOnSubmit = async () => {
-  //     setIsLoading(true);
-  //     setErrors((e) => ({ ...e, form: null }));
-
-  //     if (form.passwordConfirm !== form.password) {
-  //       setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }));
-  //       setIsLoading(false);
-  //       return;
-  //     } else {
-  //       setErrors((e) => ({ ...e, passwordConfirm: null }));
-  //     }
   const handleOnInputChange = (event) => {
     if (event.target.name === "password") {
       if (form.passwordConfirm && form.passwordConfirm !== event.target.value) {
@@ -82,13 +60,15 @@ export default function Nutritform({ setAppState }) {
     } else {
       setErrors((e) => ({ ...e, passwordConfirm: null }));
     }
+
     try {
       const res = await axios.post("http://localhost:3001/auth/register", {
-        name: form.name,
-        category: form.category,
-        quantity: form.quantity,
-        calories: form.calories,
-        image: form.image,
+        email: form.email,
+        username: form.username,
+        first_name: form.firstName,
+        last_name: form.lastName,
+        email: form.email,
+        password: form.password,
       });
 
       if (res?.data?.user) {
@@ -98,7 +78,7 @@ export default function Nutritform({ setAppState }) {
       } else {
         setErrors((e) => ({
           ...e,
-          form: "Something went wrong with Record Nutrition",
+          form: "Something went wrong with registration",
         }));
         setIsLoading(false);
       }
@@ -114,11 +94,11 @@ export default function Nutritform({ setAppState }) {
   };
 
   return (
-    <div className="NutRecord">
+    <div className="Register">
       <div className="media">{/* <MedicalResearch width={555} /> */}</div>
       <div className="card">
         <div className="text">
-          <h2>Record Nutrition </h2>
+          <h2>Register </h2>
         </div>
 
         {errors.form && <span className="error">{errors.form}</span>}
@@ -126,76 +106,93 @@ export default function Nutritform({ setAppState }) {
 
         <div className="form">
           <div className="input-field">
-            <label htmlFor="name">name</label>
+            <label htmlFor="email">Email</label>
             <br />
             <input
-              type="name"
-              name="name"
-              placeholder="Nutrition name"
-              value={form.name}
+              type="email"
+              name="email"
+              placeholder="Enter a valid email"
+              value={form.email}
               onChange={handleOnInputChange}
             />
-            {errors.name && <span className="error">{errors.name}</span>}
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
 
           <div className="split-inputs">
             <div className="input-field">
-              <label htmlFor="category">Category</label>
+              <label htmlFor="username">Username</label>
               <br />
               <input
                 type="text"
-                name="category"
-                placeholder="Nutrition category"
-                value={form.category}
+                name="username"
+                placeholder="your_username"
+                value={form.username}
                 onChange={handleOnInputChange}
               />
-              {errors.category && (
-                <span className="error">{errors.category}</span>
+              {errors.username && (
+                <span className="error">{errors.username}</span>
               )}
             </div>
 
             <div className="split-inputs">
               <div className="input-field">
-                <label htmlFor="quantity">Quantity</label>
+                <label htmlFor="name">First Name</label>
                 <br />
                 <input
                   type="text"
                   name="firstName"
-                  placeholder=""
-                  value={form.quantity}
+                  placeholder="First Name"
+                  value={form.firstName}
                   onChange={handleOnInputChange}
                 />
-                {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
+                {errors.firstName && (
+                  <span className="error">{errors.firstName}</span>
                 )}
               </div>
               <div className="input-field">
-                <label htmlFor="calories">Calories</label>
+                <label htmlFor="name">Last Name</label>
                 <br />
                 <input
                   type="text"
-                  name="calories"
-                  placeholder=""
-                  value={form.quantity}
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={form.lastName}
                   onChange={handleOnInputChange}
                 />
-                {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
+                {errors.lastName && (
+                  <span className="error">{errors.lastName}</span>
                 )}
               </div>
             </div>
 
             <div className="input-field">
-              <label htmlFor="image">Image URL</label>
+              <label htmlFor="password">Password</label>
               <br />
               <input
-                type="image"
-                name="image"
-                placeholder="http://www.food-image.com/1"
-                value={form.image}
+                type="password"
+                name="password"
+                placeholder="Enter a secure password"
+                value={form.password}
                 onChange={handleOnInputChange}
               />
-              {errors.image && <span className="error">{errors.image}</span>}
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+
+            <div className="input-field">
+              <label htmlFor="passwordConfirm">Confirm Password</label>
+              <br />
+              <input
+                type="password"
+                name="passwordConfirm"
+                placeholder="Confirm your password"
+                value={form.passwordConfirm}
+                onChange={handleOnInputChange}
+              />
+              {errors.passwordConfirm && (
+                <span className="error">{errors.passwordConfirm}</span>
+              )}
             </div>
 
             <button
@@ -203,11 +200,15 @@ export default function Nutritform({ setAppState }) {
               disabled={isLoading}
               onClick={handleOnSubmit}
             >
-              {isLoading ? "Loading..." : "Save"}
+              {isLoading ? "Loading..." : "Create Account"}
             </button>
           </div>
 
-          <div className="footer"></div>
+          <div className="footer">
+            <p>
+              Already have an account? Login <Link to="/login">here</Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
