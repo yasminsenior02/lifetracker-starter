@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import authRouter from "./routes/auth.js";
+
+const { PORT } = require("./config");
+
 const app = express();
-const port = 3000;
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -19,6 +21,6 @@ app.post("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running http://localhost:$(PORT)`);
 });
