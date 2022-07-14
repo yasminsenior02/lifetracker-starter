@@ -1,16 +1,16 @@
 const bcrypt = require("bcrypt");
 const db = require("../db");
 const { BCRYPT_WORK_FACTOR } = require("../config");
-const { BadRequestError, UnauthorizedError } = require("../utils/errors");
+const { BadRequestError, UnauthorizedError } = require("../utils/error");
 
 class User {
   static async makePublicUser(user) {
     return {
       id: user.id,
-      firstName: user.firstname,
-      lastName: user.lastname,
-      email: user.email,
+      firstName: user.first_name,
+      lastName: user.last_name,
       username: user.username,
+      email: user.email,
     };
   }
 
@@ -43,8 +43,8 @@ class User {
 
   static async register(credentials) {
     const requiredFields = [
-      "firstName",
-      "lastName",
+      "first_name",
+      "last_name",
       "username",
       "email",
       "password",
@@ -85,18 +85,18 @@ class User {
     const result = await db.query(
       `
         INSERT INTO users(
-            firstName,
-            lastName,
+            first_name,
+            last_name,
             email,
             username,
             password
         )
         VALUES ($1,$2,$3,$4,$5)
-        RETURNING id,firstName,lastName,email,username;
+        RETURNING id,first_name,last_name,email,username;
         `,
       [
-        credentials.firstName,
-        credentials.lastName,
+        credentials.first_name,
+        credentials.last_name,
         lowercasedEmail,
         credentials.username,
         hashedPassword,

@@ -4,7 +4,7 @@ const User = require("../models/user");
 // const Exercise = require("../models/exercise");
 // const Sleep = require("../models/sleep");
 // const { createUserJwt } = require("../utils/tokens");
-//const security = require("../middleware/security");
+const security = require("../security");
 const router = express.Router();
 
 router.post("/login", async (req, res, next) => {

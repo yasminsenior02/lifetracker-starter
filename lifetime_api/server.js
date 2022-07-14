@@ -1,9 +1,9 @@
-import express from "express";
-import cors from "cors";
-import morgan from "morgan";
-import authRouter from "./routes/auth";
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const authRouter = require("./routes/auth");
 const { PORT } = require("./config");
-const { BadRequestError, NotFoundError } = require("./utils/errors");
+const { BadRequestError, NotFoundError } = require("./utils/error");
 
 const app = express();
 

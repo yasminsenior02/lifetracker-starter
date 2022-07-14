@@ -26,8 +26,11 @@ console.log("PORT:".blue, PORT);
 console.log("Database URI:".blue, getDatabaseUri());
 console.log("---");
 
+const SECRET_KEY = process.env.SECRET_KEY;
+
 module.exports = {
   PORT,
   getDatabaseUri,
   BCRYPT_WORK_FACTOR,
+  SECRET_KEY,
 };
