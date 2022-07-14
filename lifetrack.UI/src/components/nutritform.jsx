@@ -189,7 +189,7 @@ export default function Nutritform({ setAppState }) {
               <label htmlFor="image">Image URL</label>
               <br />
               <input
-                type="image"
+                type="text"
                 name="image"
                 placeholder="http://www.food-image.com/1"
                 value={form.image}

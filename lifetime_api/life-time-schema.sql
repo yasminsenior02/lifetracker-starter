@@ -6,3 +6,14 @@ CREATE TABLE users (
    password     TEXT NOT NULL,
    email        TEXT NOT NULL UNIQUE CHECK (POSITION('@' IN email) > 1)
 );
+
+CREATE TABLE nutrition (
+    id SERIAL PRIMARY KEY,
+    nutrit_id INTEGER NOT NULL,
+    nutrit_name   TEXT NOT NULL,
+    category TEXT NOT NULL,
+    quantity TEXT NOT NULL,
+    calories TEXT NOT NULL,
+    image_url TEXT NOT NULL,
+    FOREIGN KEY (nutrit_id) REFERENCES users(id) ON DELETE CASCADE
+)
