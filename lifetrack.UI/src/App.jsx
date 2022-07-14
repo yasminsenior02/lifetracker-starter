@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Hero from "./components/Hero";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-
+import { AuthContextProvider, useAuthContext } from "../AuthContext/auth";
 import Nutritform from "./components/Nutritform";
 import NutritionPage from "./components/NutritionPage";
 
@@ -18,21 +18,22 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <BrowserRouter>
-        <NavBar />
+    <AuthContextProvider>
+      <>
+        <BrowserRouter>
+          <NavBar />
 
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/nutrition" element={<NutritionPage />} />
-          <Route path="/nutritform" element={<Nutritform />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route path="/nutritform" element={<nutritform />} /> */}
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/nutrition" element={<NutritionPage />} />
+            <Route path="/nutritform" element={<Nutritform />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/nutritform" element={<nutritform />} /> */}
+          </Routes>
+        </BrowserRouter>
 
-      {/* <Container
+        {/* <Container
         id="container"
         maxWidth={false}
         sx={{ backgroundColor: "#2c4147", flexGrow: 1 }}
@@ -40,7 +41,8 @@ function App() {
         {" "}
         my Container
       </Container> */}
-    </>
+      </>
+    </AuthContextProvider>
     /* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
