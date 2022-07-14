@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useAuthContext } from "../../AuthContext/auth";
 // import undraw_medical_research from "../../assets/undraw_medical_research_deep_blue.svg"
 import "./Loginform.css";
 
-export default function Loginform({ setAppState }) {
+export default function Loginform({}) {
+  const { user, setUser } = useAuthContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -34,7 +35,7 @@ export default function Loginform({ setAppState }) {
     try {
       const res = await axios.post(`http://localhost:3001/auth/login`, form);
       if (res?.data) {
-        setAppState(res.data);
+        setUser(res.data);
         setIsLoading(false);
         navigate("/portal");
       } else {

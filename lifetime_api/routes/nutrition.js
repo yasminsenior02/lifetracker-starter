@@ -5,13 +5,11 @@ const { createUserJwt } = require("../utils/tokens");
 const security = require("../security");
 const router = express.Router();
 
-router.get("/me", security.requireAuthenticatedUser, async (req, res, next) => {
+router.get("/", security.requireAuthenticatedUser, async (req, res, next) => {
   try {
-    const { email } = res.locals.user;
-    const user = await User.fetchUserByEmail(email);
-
-    const publicUser = User.makePublicUser(user);
-    return res.status(200).json({ user: publicUser });
+    var { user } = res.locals.user;
+    const nutrits = await Nutrition.listNutrition(user);
+    return res.status(200).json({ nutrition: nutrits });
   } catch (err) {
     next(err);
   }

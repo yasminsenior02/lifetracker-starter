@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Signupform.css";
+import { useAuthContext } from "../../AuthContext/auth";
 import NavBar from "./Navbar";
 
-export default function Signupform({ setAppState }) {
+export default function Signupform({}) {
+  const { user, setUser } = useAuthContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -72,7 +74,7 @@ export default function Signupform({ setAppState }) {
       });
 
       if (res?.data?.user) {
-        setAppState(res.data);
+        setUser(res.data);
         setIsLoading(false);
         navigate("/portal");
       } else {

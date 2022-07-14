@@ -1,7 +1,8 @@
 import * as React from "react";
 import "./Hero.css";
-
+import { useAuthContext } from "../../AuthContext/auth";
 export default function Hero() {
+  const { user, setUser } = useAuthContext();
   return (
     <div className="Hero">
       <div className="image">

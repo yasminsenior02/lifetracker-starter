@@ -4,6 +4,6 @@ import axios from "axios";
 // import undraw_medical_research from "../../assets/undraw_medical_research_deep_blue.svg"
 import "./Login.css";
 
-export default function Login({ setAppState }) {
+export default function Login({}) {
   return <Loginform />;
 }

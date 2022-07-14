@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { SECRET_KEY } = require("../config");
-const { UnauthorizedError } = require("../utils/errors");
+const { SECRET_KEY } = require("./config");
+const { UnauthorizedError } = require("./utils/error");
 
 const jwtFrom = ({ headers }) => {
   if (headers?.authorization) {
