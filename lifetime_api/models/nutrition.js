@@ -2,17 +2,18 @@ const db = require("../db");
 const { BadRequestError } = require("../utils/error");
 
 class Nutrition {
-  static async listNutrition(user) {
+  static async listNutrition(userId) {
     const results = await db.query(
       `SELECT *
       FROM nutrition
       WHERE nutrit_id = $1;`,
-      [user.id]
+      [userId]
     );
     return results.rows;
   }
-  static async PostNutrition({ nutritcreds, user }) {
-    if (nutritcreds.nutrit_name.length === 0) {
+  static async PostNutrition(nutritcreds, userId) {
+    console.log(nutritcreds);
+    if (nutritcreds.name.length === 0) {
       throw new BadRequestError("No nutrient name provided");
     }
 
@@ -20,7 +21,7 @@ class Nutrition {
       throw new BadRequestError("No nutrition category provided");
     }
 
-    if (nutritcreds.image_Url.length === 0) {
+    if (nutritcreds.image.length === 0) {
       throw new BadRequestError("Must provide imageUrl");
     }
 
@@ -38,19 +39,19 @@ class Nutrition {
                 category,
                 quantity,
                 calories,
-                image_Url,
+                image_url,
                nutrit_id
             )
-            VALUES ($1,$2,$3,$4,$5,$6), (SELECT id FROM users WHERE email = $5)
+            VALUES ($1,$2,$3,$4,$5,$6)
             RETURNING nutrit_name,category,quantity,calories, image_url, nutrit_id;
             `,
       [
-        nutritcreds.nutrit_name,
+        nutritcreds.name,
         nutritcreds.category,
         nutritcreds.quantity,
         nutritcreds.calories,
-        nutritcreds.image_Url,
-        user.email,
+        nutritcreds.image,
+        userId,
       ]
     );
     const ress = result.rows[0];

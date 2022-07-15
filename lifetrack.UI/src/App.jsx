@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
@@ -13,9 +13,24 @@ import Login from "./components/Login";
 import { AuthContextProvider, useAuthContext } from "../AuthContext/auth";
 import Nutritform from "./components/Nutritform";
 import NutritionPage from "./components/NutritionPage";
-
+import apiClient from "../apiClient";
+import ExerciseForm from "./components/ExerciseForm";
+import Exercise from "./components/Exercise";
 function App() {
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const fetchAuthUser = async () => {
+      const { data, error } = await apiClient.fetchUserFromToken();
+      if (data) setUser(data.user);
+    };
+
+    const token = localStorage.getItem("life-starter-token");
+    if (token) {
+      apiClient.setToken(token);
+      fetchAuthUser();
+    }
+  }, []);
 
   return (
     <AuthContextProvider>
@@ -27,6 +42,8 @@ function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/nutrition" element={<NutritionPage />} />
             <Route path="/nutritform" element={<Nutritform />} />
+            <Route path="/exercise" element={<Exercise />} />
+            <Route path="/exerciseform" element={<ExerciseForm />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             {/* <Route path="/nutritform" element={<nutritform />} /> */}

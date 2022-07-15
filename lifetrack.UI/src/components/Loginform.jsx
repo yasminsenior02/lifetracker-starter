@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from "../../AuthContext/auth";
+import apiClient from "../../apiClient";
 // import undraw_medical_research from "../../assets/undraw_medical_research_deep_blue.svg"
 import "./Loginform.css";
 
@@ -36,8 +37,9 @@ export default function Loginform({}) {
       const res = await axios.post(`http://localhost:3001/auth/login`, form);
       if (res?.data) {
         setUser(res.data);
+        apiClient.setToken(res.data.token);
         setIsLoading(false);
-        navigate("/portal");
+        navigate("/nutrition");
       } else {
         setErrors((e) => ({
           ...e,

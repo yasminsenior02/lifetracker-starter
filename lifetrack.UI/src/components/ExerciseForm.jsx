@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "./Nutritform.css";
+import "./ExerciseForm.css";
 import { useAuthContext } from "../../AuthContext/auth";
 import apiClient from "../../apiClient";
 import NavBar from "./Navbar";
-import Nutrition from "./NutritionPage";
+import Exercise from "./Exercise";
 
-export default function Nutritform({}) {
+export default function ExerciseForm({}) {
   const { user, setUser } = useAuthContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -16,33 +16,10 @@ export default function Nutritform({}) {
     name: "",
     category: "",
     quantity: "",
-    calories: "",
-    image: "",
+    duration: "",
+    intensity: "",
   });
 
-  //   const handleOnInputChange = (event) => {
-  //     if (event.target.name === "name") {
-  //       if (event.target.value.indexOf("@") === -1) {
-  //         setErrors((e) => ({ ...e, email: "Please enter a valid email." }));
-  //       } else {
-  //         setErrors((e) => ({ ...e, email: null }));
-  //       }
-  //     }
-
-  //     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
-  //   };
-
-  //   const handleOnSubmit = async () => {
-  //     setIsLoading(true);
-  //     setErrors((e) => ({ ...e, form: null }));
-
-  //     if (form.passwordConfirm !== form.password) {
-  //       setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }));
-  //       setIsLoading(false);
-  //       return;
-  //     } else {
-  //       setErrors((e) => ({ ...e, passwordConfirm: null }));
-  //     }
   const handleOnInputChange = (event) => {
     if (event.target.name === "password") {
       if (form.passwordConfirm && form.passwordConfirm !== event.target.value) {
@@ -87,24 +64,18 @@ export default function Nutritform({}) {
       setErrors((e) => ({ ...e, passwordConfirm: null }));
     }
     try {
-      const res = await apiClient.request("nutrition", "post", form);
-      // const res = await axios.post("http://localhost:3001/nutrition", {
-      //   name: form.name,
-      //   category: form.category,
-      //   quantity: form.quantity,
-      //   calories: form.calories,
-      //   image: form.image,
-      // });
+      const res = await apiClient.request("exercise", "post", form);
+
       console.log(res);
-      if (res?.data?.nutrition) {
+      if (res?.data?.exercise) {
         setUser(res.data);
         // apiClient.setToken(res.data.token);
         setIsLoading(false);
-        navigate("/nutrition");
+        navigate("/exercise");
       } else {
         setErrors((e) => ({
           ...e,
-          form: "Something went wrong with Record Nutrition",
+          form: "Something went wrong with Record Exercise",
         }));
         setIsLoading(false);
       }
@@ -120,11 +91,11 @@ export default function Nutritform({}) {
   };
 
   return (
-    <div className="NutRecord">
+    <div className="ExRecord">
       <div className="media">{/* <MedicalResearch width={555} /> */}</div>
       <div className="card">
         <div className="text">
-          <h2>Record Nutrition </h2>
+          <h2>Record Exercise </h2>
         </div>
 
         {errors.form && <span className="error">{errors.form}</span>}
@@ -137,7 +108,7 @@ export default function Nutritform({}) {
             <input
               type="name"
               name="name"
-              placeholder="Nutrition name"
+              placeholder="Exercise name"
               value={form.name}
               onChange={handleOnInputChange}
             />
@@ -151,7 +122,7 @@ export default function Nutritform({}) {
               <input
                 type="text"
                 name="category"
-                placeholder="Nutrition category"
+                placeholder="Exercise category"
                 value={form.category}
                 onChange={handleOnInputChange}
               />
@@ -176,32 +147,34 @@ export default function Nutritform({}) {
                 )}
               </div>
               <div className="input-field">
-                <label htmlFor="calories">Calories</label>
+                <label htmlFor="duration">Duration</label>
                 <br />
                 <input
                   type="text"
-                  name="calories"
-                  placeholder="calories"
-                  value={form.calories}
+                  name="duration"
+                  placeholder="duration"
+                  value={form.duration}
                   onChange={handleOnInputChange}
                 />
                 {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
+                  <span className="error">{errors.duration}</span>
                 )}
               </div>
             </div>
 
             <div className="input-field">
-              <label htmlFor="image">Image URL</label>
+              <label htmlFor="intnesity">Intensity</label>
               <br />
               <input
                 type="text"
-                name="image"
-                placeholder="http://www.food-image.com/1"
-                value={form.image}
+                name="intensity"
+                placeholder="Intensity"
+                value={form.intensity}
                 onChange={handleOnInputChange}
               />
-              {errors.image && <span className="error">{errors.image}</span>}
+              {errors.image && (
+                <span className="error">{errors.intensity}</span>
+              )}
             </div>
 
             <button

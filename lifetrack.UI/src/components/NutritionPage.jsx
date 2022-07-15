@@ -9,7 +9,7 @@ export default function Nutrition({}) {
   const { user, setUser } = useAuthContext();
   return (
     <div className="Nutrition">
-      <div classname="header">
+      <div className="header">
         <h1>Nutrition</h1>
       </div>
       <button>
