@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const authRouter = require("./routes/auth");
 const NutritRouter = require("./routes/nutrition");
+const { extractUserFromJwt } = requie(".security");
 
 const { PORT } = require("./config");
 const { BadRequestError, NotFoundError } = require("./utils/error");
@@ -15,12 +16,14 @@ app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/nutrition", NutritRouter);
 
-app.use((req, res, next) => {
+app.use((extractUserFromJwt, req, res, next) => {
   return next(new NotFoundError());
 });
 
-app.use((err, req, res, next) => {
+app.use((err, extractUserFromJwt, req, res, next) => {
   const status = err.status || 500;
+
+  console.log(err.stack);
   const message = err.message;
 
   return res.status(status).json({
