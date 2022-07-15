@@ -29,7 +29,8 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 - [x] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.)
 - [x] The activity tracked should be given a unique id for easy lookup.
       `TODO://` Add link to table schema in the link code below. Your file should end in `.sql` and show your schema for the detailed activities table. (🚫 Remove this paragraph after adding schema link)
-  - [Table Schema](📝(https://github.com/yasminsenior02/lifetracker-starter/blob/main/lifetime_api/life-time-schema.sql))
+  - [Table Schema](https://github.com/yasminsenior02/lifetracker-starter/blob/main/lifetime_api/life-time-schema.sql)
+
 
 ### Stretch Features
 
