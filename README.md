@@ -45,7 +45,7 @@ Implement any of the following features to improve the application:
 
 
 
-`https://www.loom.com/share/b9abb5e0a17946b7bf3240b67a231d36`
+[Walkthrough Video](https://www.loom.com/share/b9abb5e0a17946b7bf3240b67a231d36)
 
 ### Reflection
 
