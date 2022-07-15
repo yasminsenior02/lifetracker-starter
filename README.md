@@ -4,7 +4,7 @@
 
 Submitted by: **Yasmin Senior**
 
-Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
+Deployed Application: [Lifetracker Deployed Site](https://plant_mom.surge.sh/)
 
 ## Application Features
 
