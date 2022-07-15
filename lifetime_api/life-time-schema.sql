@@ -12,8 +12,8 @@ CREATE TABLE nutrition (
     nutrit_id INTEGER NOT NULL,
     nutrit_name   TEXT NOT NULL,
     category TEXT NOT NULL,
-    quantity TEXT NOT NULL,
-    calories TEXT NOT NULL,
+    quantity INTEGER NOT NULL,
+    calories INTEGER NOT NULL,
     image_url TEXT NOT NULL,
     FOREIGN KEY (nutrit_id) REFERENCES users(id) ON DELETE CASCADE
 )

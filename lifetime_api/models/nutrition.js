@@ -38,19 +38,19 @@ class Nutrition {
                 category,
                 quantity,
                 calories,
-                imageUrl,
+                image_Url,
                nutrit_id
             )
-            VALUES ($1,$2,$3,$4,$5,$6)
-            RETURNING nutrit_id,nutrit_name,category,quantity,calories;
+            VALUES ($1,$2,$3,$4,$5,$6), (SELECT id FROM users WHERE email = $5)
+            RETURNING nutrit_name,category,quantity,calories, image_url, nutrit_id;
             `,
       [
-        nutrition.nutrit_name,
-        nutrition.category,
-        nutrition.quantity,
-        nutrition.calories,
-        nutritionimage_Url,
-        user.id,
+        nutritcreds.nutrit_name,
+        nutritcreds.category,
+        nutritcreds.quantity,
+        nutritcreds.calories,
+        nutritcreds.image_Url,
+        user.email,
       ]
     );
     const ress = result.rows[0];
