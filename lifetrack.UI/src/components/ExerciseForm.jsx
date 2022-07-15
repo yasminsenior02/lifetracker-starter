@@ -15,7 +15,7 @@ export default function ExerciseForm({}) {
   const [form, setForm] = useState({
     name: "",
     category: "",
-    quantity: "",
+
     duration: "",
     intensity: "",
   });
@@ -130,22 +130,7 @@ export default function ExerciseForm({}) {
                 <span className="error">{errors.category}</span>
               )}
             </div>
-
-            <div className="split-inputs">
-              <div className="input-field">
-                <label htmlFor="quantity">Quantity</label>
-                <br />
-                <input
-                  type="text"
-                  name="quantity"
-                  placeholder="quantity"
-                  value={form.quantity}
-                  onChange={handleOnInputChange}
-                />
-                {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
-                )}
-              </div>
+            <div>
               <div className="input-field">
                 <label htmlFor="duration">Duration</label>
                 <br />

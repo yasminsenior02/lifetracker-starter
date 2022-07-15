@@ -16,16 +16,16 @@ CREATE TABLE nutrition (
     calories INTEGER NOT NULL,
     image_url TEXT NOT NULL,
     FOREIGN KEY (nutrit_id) REFERENCES users(id) ON DELETE CASCADE
-)
+);
 
-CREATE TABLE sleep (
-    id SERIAL PRIMARY KEY,
-  sleep_id INTEGER NOT NULL,
-  createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-   startDate TIMESTAMP NOT NULL
-    endDate TIMESTAMP  NOT NULL,
-    FOREIGN KEY (sleep_id) REFERENCES users(id) ON DELETE CASCADE
-)
+-- CREATE TABLE sleep (
+--     id SERIAL PRIMARY KEY,
+--   sleep_id INTEGER NOT NULL,
+--   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+--    startDate TIMESTAMP NOT NULL
+--     endDate TIMESTAMP  NOT NULL,
+--     FOREIGN KEY (sleep_id) REFERENCES users(id) ON DELETE CASCADE
+-- )
 CREATE TABLE exercise (
     id SERIAL PRIMARY KEY,
     exercise_id INTEGER NOT NULL,
@@ -34,4 +34,4 @@ CREATE TABLE exercise (
       duration INTEGER NOT NULL,
      intensity INTEGER NOT NULL,
     FOREIGN KEY (exercise_id) REFERENCES users(id) ON DELETE CASCADE
-)
+);

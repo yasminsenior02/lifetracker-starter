@@ -20,10 +20,6 @@ class Exercise {
       throw new BadRequestError("No exercise category provided");
     }
 
-    if (exercise.quantity === 0) {
-      throw new BadRequestError("exercise quantity cannot be zero");
-    }
-
     if (exercise.duration === 0) {
       throw new BadRequestError("exercise duration cannot be zero");
     }
@@ -35,18 +31,16 @@ class Exercise {
             INSERT INTO exercise(
                exercise_name,
                 category,
-                quantity,
                duration,
                intensity,
                exercise_id
             )
-            VALUES ($1,$2,$3,$4,$5,$6)
-            RETURNING exercise_name,category,quantity,duration, intensity, exercise_id;
+            VALUES ($1,$2,$3,$4,$5)
+            RETURNING exercise_name,category,duration, intensity, exercise_id;
             `,
       [
         exercise.name,
         exercise.category,
-        exercise.quantity,
         exercise.duration,
         exercise.intensity,
         userId,
