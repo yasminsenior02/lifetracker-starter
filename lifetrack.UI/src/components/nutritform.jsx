@@ -129,79 +129,80 @@ export default function Nutritform({}) {
 
         {errors.form && <span className="error">{errors.form}</span>}
         <br />
-
-        <div className="form">
-          <div className="input-field">
-            <label htmlFor="name">name</label>
-            <br />
-            <input
-              type="name"
-              name="name"
-              placeholder="Nutrition name"
-              value={form.name}
-              onChange={handleOnInputChange}
-            />
-            {errors.name && <span className="error">{errors.name}</span>}
-          </div>
-
-          <div className="split-inputs">
+        <div className="forms">
+          <div className="form">
             <div className="input-field">
-              <label htmlFor="category">Category</label>
+              <label htmlFor="name">name</label>
               <br />
               <input
-                type="text"
-                name="category"
-                placeholder="Nutrition category"
-                value={form.category}
+                type="name"
+                name="name"
+                placeholder="Nutrition name"
+                value={form.name}
                 onChange={handleOnInputChange}
               />
-              {errors.category && (
-                <span className="error">{errors.category}</span>
-              )}
+              {errors.name && <span className="error">{errors.name}</span>}
             </div>
 
             <div className="split-inputs">
               <div className="input-field">
-                <label htmlFor="quantity">Quantity</label>
+                <label htmlFor="category">Category</label>
                 <br />
                 <input
                   type="text"
-                  name="quantity"
-                  placeholder="quantity"
-                  value={form.quantity}
+                  name="category"
+                  placeholder="Nutrition category"
+                  value={form.category}
                   onChange={handleOnInputChange}
                 />
-                {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
+                {errors.category && (
+                  <span className="error">{errors.category}</span>
                 )}
               </div>
-              <div className="input-field">
-                <label htmlFor="calories">Calories</label>
-                <br />
-                <input
-                  type="text"
-                  name="calories"
-                  placeholder="calories"
-                  value={form.calories}
-                  onChange={handleOnInputChange}
-                />
-                {errors.quantity && (
-                  <span className="error">{errors.quantity}</span>
-                )}
-              </div>
-            </div>
 
-            <div className="input-field">
-              <label htmlFor="image">Image URL</label>
-              <br />
-              <input
-                type="text"
-                name="image"
-                placeholder="http://www.food-image.com/1"
-                value={form.image}
-                onChange={handleOnInputChange}
-              />
-              {errors.image && <span className="error">{errors.image}</span>}
+              <div className="split-inputs">
+                <div className="input-field">
+                  <label htmlFor="quantity">Quantity</label>
+                  <br />
+                  <input
+                    type="text"
+                    name="quantity"
+                    placeholder="quantity"
+                    value={form.quantity}
+                    onChange={handleOnInputChange}
+                  />
+                  {errors.quantity && (
+                    <span className="error">{errors.quantity}</span>
+                  )}
+                </div>
+                <div className="input-field">
+                  <label htmlFor="calories">Calories</label>
+                  <br />
+                  <input
+                    type="text"
+                    name="calories"
+                    placeholder="calories"
+                    value={form.calories}
+                    onChange={handleOnInputChange}
+                  />
+                  {errors.quantity && (
+                    <span className="error">{errors.quantity}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="image">Image URL</label>
+                <br />
+                <input
+                  type="text"
+                  name="image"
+                  placeholder="http://www.food-image.com/1"
+                  value={form.image}
+                  onChange={handleOnInputChange}
+                />
+                {errors.image && <span className="error">{errors.image}</span>}
+              </div>
             </div>
 
             <button

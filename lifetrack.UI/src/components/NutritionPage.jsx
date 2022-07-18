@@ -10,11 +10,19 @@ export default function Nutrition({}) {
   return (
     <div className="Nutrition">
       <div className="header">
-        <h1>Nutrition</h1>
+        <h1 className="head">Nutrition</h1>
       </div>
-      <button>
-        <Link to="/nutritform">Record nutrition</Link>
-      </button>
+      <div className="content">
+        <h3>Overview</h3>
+        <a href="/nutritform">
+          <button className="nutritbutton">Record nutrition</button>
+        </a>
+      </div>
+      <div className="feed">
+        <div className="ending">
+          <h2>Nothing here yet.</h2>
+        </div>
+      </div>
     </div>
   );
 }
