@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 
+import Activity from "./components/Activity";
 import Button from "@mui/material/Button";
 import NavBar from "./components/Navbar";
 import Container from "@mui/material/Container";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/nutrition" element={<NutritionPage />} />
             <Route path="/nutritform" element={<Nutritform />} />
+            <Route path="/activity" element={<Activity />} />
             <Route path="/exercise" element={<Exercise />} />
             <Route path="/exerciseform" element={<ExerciseForm />} />
             <Route path="/signup" element={<Signup />} />

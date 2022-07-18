@@ -7,7 +7,7 @@ import apiClient from "../../apiClient";
 import NavBar from "./Navbar";
 import Nutrition from "./NutritionPage";
 
-export default function Nutritform({}) {
+export default function Nutritform(props) {
   const { user, setUser } = useAuthContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -75,48 +75,33 @@ export default function Nutritform({}) {
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
 
-  const handleOnSubmit = async () => {
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    props.handleNutritonForm();
     setIsLoading(true);
-    setErrors((e) => ({ ...e, form: null }));
-
-    if (form.passwordConfirm !== form.password) {
-      setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }));
-      setIsLoading(false);
-      return;
-    } else {
-      setErrors((e) => ({ ...e, passwordConfirm: null }));
+    const { data, error } = await apiClient.createNutrition({
+      name: form.name,
+      category: form.category,
+      quantity: form.quantity,
+      calories: form.calories,
+      image_url: form.image_url,
+    });
+    if (error) {
+      setErrors(error);
     }
-    try {
-      const res = await apiClient.request("nutrition", "post", form);
-      // const res = await axios.post("http://localhost:3001/nutrition", {
-      //   name: form.name,
-      //   category: form.category,
-      //   quantity: form.quantity,
-      //   calories: form.calories,
-      //   image: form.image,
-      // });
-      console.log(res);
-      if (res?.data?.nutrition) {
-        setUser(res.data);
-        // apiClient.setToken(res.data.token);
-        setIsLoading(false);
-        navigate("/nutrition");
-      } else {
-        setErrors((e) => ({
-          ...e,
-          form: "Something went wrong with Record Nutrition",
-        }));
-        setIsLoading(false);
-      }
-    } catch (err) {
-      console.log(err);
-      const message = err?.response?.data?.error?.message;
-      setErrors((e) => ({
-        ...e,
-        form: message ? String(message) : String(err),
-      }));
-      setIsLoading(false);
+    if (data) {
+      setForm({
+        name: "",
+        category: "",
+        quantity: "",
+        calories: "",
+        image_url: "",
+      });
+      console.log("data", data.nutrition);
+      props.addNutrition(data.nutrition);
+      navigate("/nutrition");
     }
+    setIsLoading(false);
   };
 
   return (

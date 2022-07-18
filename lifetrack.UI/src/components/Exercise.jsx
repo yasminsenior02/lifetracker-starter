@@ -8,13 +8,21 @@ import NavBar from "./Navbar";
 export default function Exercise({}) {
   const { user, setUser } = useAuthContext();
   return (
-    <div className="Nutrition">
+    <div className="Exercise">
       <div className="header">
         <h1>Exercise</h1>
       </div>
-      <button>
-        <Link to="/exerciseform">Record Exercise</Link>
-      </button>
+      <div className="content">
+        <h3>Overview</h3>
+        <a href="/exerciseform">
+          <button className="exercisebutton">Record Exercise</button>
+        </a>
+      </div>
+      <div className="feed">
+        <div className="ending">
+          <h2>Nothing here yet.</h2>
+        </div>
+      </div>
     </div>
   );
 }
